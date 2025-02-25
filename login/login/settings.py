@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',  # Gerencia sessões de usuários
     'django.contrib.messages',  # Permite exibir mensagens temporárias para os usuários
     'django.contrib.staticfiles',  # Gerencia arquivos estáticos (CSS, JS, imagens)
-    'autenticacao',  # Adicionando o nosso app de autenticação
+    'accounts',  # Adicionando o nosso app de autenticação
 ]
 
 
@@ -51,12 +51,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'desafio_login.urls'
+ROOT_URLCONF = 'login.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'autenticacao/templates'],
+        'DIRS': [BASE_DIR / 'accounts/templates'],  # Adicionando o diretório de templates do nosso app
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'desafio_login.wsgi.application'
+WSGI_APPLICATION = 'login.wsgi.application'
 
 
 # Database
@@ -123,3 +123,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/accounts/dashboard/'
+
+LOGOUT_REDIRECT_URL = '/login'
