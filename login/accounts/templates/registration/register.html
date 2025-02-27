@@ -2,9 +2,52 @@
 
 {% block content %}
     <h1>Create New Account</h1>
-    <form method="POST">
+    <form method="POST" novalidate>
         {% csrf_token %}
-        {{form.as_p}}
-        <button>Register</button>
+        {{ form.non_field_errors }}
+        <div>
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        <div>
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        <div>
+            <label for="id_password1">Password:</label>
+            {{ form.password1 }}
+            <small>Password must be at least 8 characters long, contain a number, an uppercase letter, and a special character.</small>
+            {{ form.password1.errors }}
+        </div>
+        <div>
+            <label for="id_password2">Confirm Password:</label>
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+        </div>
+        <button type="button" onclick="togglePasswordVisibility()">Show/Hide Passwords</button>
+        <button type="submit">Register</button>
+        <button type="button" onclick="window.location.href='{% url 'login_url' %}'">Cancel</button>
     </form>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <script>
+        function togglePasswordVisibility() {
+            var passwordFields = ['id_password1', 'id_password2'];
+            passwordFields.forEach(function(fieldId) {
+                var field = document.getElementById(fieldId);
+                if (field.type === "password") {
+                    field.type = "text";
+                } else {
+                    field.type = "password";
+                }
+            });
+        }
+    </script>
 {% endblock %}
