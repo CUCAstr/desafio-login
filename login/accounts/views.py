@@ -1,11 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-import re
 from .forms import CustomUserCreationForm
 
 # Create your views here.
@@ -23,10 +20,10 @@ def registerView(request):
             user = form.save(commit=False)
             user.username = user.email  # Set username as email
             user.save()
-            messages.success(request, "Registration successful. Please log in.")
+            messages.success(request, "Registro bem-sucedido. Por favor, faça login.")
             return redirect('login_url')
         else:
-            messages.error(request, "Registration failed. Please correct the errors above.")
+            messages.error(request, "Falha no registro. Por favor, corrija os erros acima.")
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
@@ -40,12 +37,12 @@ def loginView(request):
             user = authenticate(request, username=email, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, "Login successful.")
+                messages.success(request, "Login bem-sucedido.")
                 return redirect('menu')
             else:
-                messages.error(request, "Incorrect password.")
+                messages.error(request, "Senha inválida.")
         except User.DoesNotExist:
-            messages.error(request, "Email does not exist.")
+            messages.error(request, "E-mail inexistente.")
     return render(request, 'registration/login.html')
 
 def menuView(request):
@@ -53,5 +50,5 @@ def menuView(request):
 
 def logoutView(request):
     logout(request)
-    messages.success(request, "You have been logged out.")
+    messages.success(request, "Você saiu do sistema.")
     return redirect('login_url')

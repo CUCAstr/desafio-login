@@ -1,12 +1,12 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <h1>Create New Account</h1>
+    <h1>Registrar</h1>
     <form method="POST" novalidate>
         {% csrf_token %}
         {{ form.non_field_errors }}
         <div>
-            <label for="id_name">Name:</label>
+            <label for="id_name">Nome:</label>
             {{ form.name }}
             {{ form.name.errors }}
         </div>
@@ -16,19 +16,19 @@
             {{ form.email.errors }}
         </div>
         <div>
-            <label for="id_password1">Password:</label>
+            <label for="id_password1">Senha:</label>
             {{ form.password1 }}
-            <small>Password must be at least 8 characters long, contain a number, an uppercase letter, and a special character.</small>
+            <small>A senha deve ter pelo menos 8 caracteres, conter um número, uma letra maiúscula e um caractere especial.</small>
             {{ form.password1.errors }}
         </div>
         <div>
-            <label for="id_password2">Confirm Password:</label>
+            <label for="id_password2">Confirmar Senha:</label>
             {{ form.password2 }}
             {{ form.password2.errors }}
         </div>
-        <button type="button" onclick="togglePasswordVisibility()">Show/Hide Passwords</button>
-        <button type="submit">Register</button>
-        <button type="button" onclick="window.location.href='{% url 'login_url' %}'">Cancel</button>
+        <button type="button" onclick="togglePasswordVisibility()">Mostrar/Ocultar Senhas</button>
+        <button type="submit">Registrar</button>
+        <button type="button" onclick="window.location.href='{% url 'login_url' %}'">Cancelar</button>
     </form>
     {% if messages %}
         <ul>

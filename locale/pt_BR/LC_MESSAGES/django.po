@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
+
+msgid "This field is required."
+msgstr "Este campo é obrigatório."
+
+msgid "This password is too short. It must contain at least 8 characters."
+msgstr "A senha é muito curta. Deve conter pelo menos 8 caracteres."
+
+msgid "Enter a valid email address."
+msgstr "Digite um endereço de email válido."

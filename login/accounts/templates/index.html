@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple Auth System</title>
+    <title>Desafio-Login</title>
 </head>
 <body>
     {% block content %}
-        <h1>Welcome Home , from Homepage </h1>
+        <h1>Desafio-Login</h1>
         {% if user.is_authenticated %}
             <a href="{% url 'logout' %}">Logout</a>
 
         {% else %}
             <a href="{% url 'login_url' %}">Login</a>
-            <a href="{% url 'register_url' %}">Register</a>
+            <a href="{% url 'register_url' %}">Registrar</a>
 
         {% endif %}
 
